@@ -18,7 +18,7 @@ def add_product_to_recipe(request, recipe_id, product_id, weight):
             return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} grams')
 
         recipe_product = RecipeProduct.objects.create(recipe=recipe, product=product, weight_grams=weight)
-        return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} grams')
+        return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} грамм(а)')
 
 
 # Увеличение "количества приготовлений" каждого продукта, входящего в определенный рецепт, на 1
@@ -32,6 +32,7 @@ def cook_recipe(request, recipe_id):
     return HttpResponse(products.items())
 
 
+# Получение таблицы с рецептами блюд содержащих меньше 11 грамм определенного продукта, либо вовсе не содержащих его
 def show_recipes_without_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     recipes = []

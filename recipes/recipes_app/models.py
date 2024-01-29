@@ -32,9 +32,3 @@ class RecipeProduct(models.Model):
                                 verbose_name='Продукт')
     recipe = models.ForeignKey('Recipe', related_name='recipes_set', on_delete=models.CASCADE, verbose_name='Рецепт')
     weight_grams = models.PositiveIntegerField(verbose_name='Вес в граммах')
-
-    def save(self, *args, **kwargs):
-        if len(RecipeProduct.objects.filter(product=self.product, recipe=self.recipe)) >= 1:
-            raise Exception('Нельзя добавлить в рецепт продукт больше одного раза')
-        super(RecipeProduct, self).save(*args, **kwargs)
-
