@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Рецепты, без выбранного продукта</title>
+    <style>
+            td{
+                width: 60px;
+                height:60px;
+                border: solid 1px silver;
+                text-align:center;
+            }
+        </style>
+</head>
+<body>
+<table>
+    <tr><th>id Рецепта</th><th>Название рецепта</th></tr>
+    {% for r in recipes %}
+    <tr><td>{{ r.id }}</td><td>{{ r.name }}</td></tr>
+    {% endfor %}
+</table>
+</body>
+</html>
