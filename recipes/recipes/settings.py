@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'recipes_db',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'USER': 'recipes_user',
+        'PASSWORD': 'recipes_password',
+        'HOST': 'db',
         'PORT': 5432
     }
 }
