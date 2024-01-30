@@ -15,7 +15,7 @@ def add_product_to_recipe(request, recipe_id, product_id, weight):
             recipe_product = RecipeProduct.objects.get(recipe=recipe, product=product)
             recipe_product.weight_grams += weight
             recipe_product.save()
-            return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} grams')
+            return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} грамм(а)')
 
         recipe_product = RecipeProduct.objects.create(recipe=recipe, product=product, weight_grams=weight)
         return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} грамм(а)')
