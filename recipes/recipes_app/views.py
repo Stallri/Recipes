@@ -19,9 +19,9 @@ def add_product_to_recipe(request, recipe_id, product_id, weight):
             recipe_product = RecipeProduct.objects.select_for_update().get(recipe=recipe, product=product)
             recipe_product.weight_grams += weight
             recipe_product.save()
-        return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} грамм(а)')
+        return JsonResponse({'Рецепт': recipe, 'Продукт': product, 'Количество грамм': recipe_product.weight_grams})
     recipe_product = RecipeProduct.objects.create(recipe=recipe, product=product, weight_grams=weight)
-    return HttpResponse(f'{recipe}, {product}, {recipe_product.weight_grams} грамм(а)')
+    return JsonResponse({'Рецепт': recipe, 'Продукт': product, 'Количество грамм': recipe_product.weight_grams})
 
 
 # Увеличение "количества приготовлений" каждого продукта, входящего в определенный рецепт, на 1
