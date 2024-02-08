@@ -33,9 +33,6 @@ class RecipeProduct(models.Model):
     recipe = models.ForeignKey('Recipe', related_name='recipes_set', on_delete=models.CASCADE, verbose_name='Рецепт')
     weight_grams = models.PositiveIntegerField(verbose_name='Вес в граммах')
 
-    def save(self, *args, **kwargs):
-        if RecipeProduct.objects.filter(product=self.product, recipe=self.recipe).exclude(
-                product=self.product, recipe=self.recipe, id=self.id):
-            raise Exception('Нельзя добавить в рецепт один продукт несколько раз!')
-        super(RecipeProduct, self).save(*args, **kwargs)
+    class Meta:
+        unique_together = ['recipe', 'product']
 
